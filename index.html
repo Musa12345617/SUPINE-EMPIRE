@@ -1,0 +1,27 @@
+<h2>SUPINE EMPIRE</h2>
+<input type="text" id="webhook" placeholder="Enter Webhook URL"><br><br>
+<input type="text" id="msg" placeholder="Message Here">
+<button onclick="sendMsg()">ٍSend</button>
+<h2>By o5g8w</h2>
+
+<script>
+  async function sendMsg() {
+    const webhookURL = document.getElementById("webhook").value.trim();
+    const content = document.getElementById("msg").value.trim();
+
+    if (!webhookURL) return alert("Please enter a webhook URL");
+    if (!content) return alert("Please enter a message");
+
+    try {
+      await fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content })
+      });
+      alert("Done");
+    } catch (err) {
+      alert("Error");
+      console.error(err);
+    }
+  }
+</script>
